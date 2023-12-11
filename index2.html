@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- add post -->
+        <div class="modals">
+            <div class="modal add-post-modal fade" id="new-post-Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">add a new post</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="title-new-post" class="col-form-label">title</label>
+                                    <input type="text" value="" class="form-control titlenewpostinput"
+                                        id="title-new-post">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bodynewpost" class="col-form-label">body</label>
+                                    <textarea name="" id="bodynewpost" class="form-control bodynewpostinput"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="image-new-post" class="col-form-label">title</label>
+                                    <input type="file" class="form-control imagenewpostinput" id="image-new-post">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-outline-warning create-post">create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end add post -->
+        <!-- login modal -->
+
+        <div class="modals">
+            <div class="modal login-modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">login</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">user name</label>
+                                    <input type="text" value="yassin" class="form-control nameinput"
+                                        id="recipient-name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">password</label>
+                                    <input type="password" value="123456" class="form-control passwordinput"
+                                        id="message-text">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" id="liveAlertBtn" class="btn btn-outline-warning token">login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end login modal -->
+        <!-- register modal -->
+        <div class="modals">
+            <div class="modal register-modal fade" id="register-Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">register</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="col-form-label"> name</label>
+                                    <input type="text" value="yassin" class="form-control registernameinput" id="name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="register-username" class="col-form-label">user name</label>
+                                    <input type="text" value="yassin154ll" class="form-control registerusernameinput"
+                                        id="register-username">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="register-password" class="col-form-label">password</label>
+                                    <input type="password" value="123456" class="form-control passwordinput"
+                                        id="register-password">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="register-image" class="col-form-label">image</label>
+                                    <input type="file" class="form-control imageinput" id="register-image">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" id="liveAlertBtn"
+                                class="btn btn-outline-warning register">register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end register modal -->
+        <div id="liveAlertPlaceholder" class="show fade"></div>
+    </div>
+    <!-- nanbar start -->
+    <div class="d-flex justify-content-center">
+        <div class="col-9">
+            <nav class="navbar navbar-expand-lg bg-dark rounded-bottom pt-3 shadow border-body" data-bs-theme="dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand link-warning" href="index.html">yassin</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link  active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="#">profile</a>
+                            </li>
+
+                        </ul>
+                        <form class="d-flex">
+                            <button type="button" class="btn btn-outline-warning loginbtn" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" data-bs-whatever="@mdo">login</button>
+                            <button class="btn btn-outline-warning mx-2 registerbtn" type="button"
+                                data-bs-toggle="modal" data-bs-target="#register-Modal">register</button>
+                            <div class="navloggedin d-flex justify-content-center align-items-center">
+                                <img src="user.png" class="navuserimg" alt="">
+                                <p class="nav-username text-light-emphasis">yassinsh</p>
+                                <button id="logoutBtn" class="btn btn-outline-warning mx-2 logoutbtn" type="submit"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">logout</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- navbar end  -->
+    <!-- title -->
+    <div class="d-flex justify-content-center my-5">
+        <div class="col-6">
+            <h1><span class="username-span" id="username-span">username</span> post</h1>
+        </div>
+    </div>
+    <!-- title end -->
+    <!-- post -->
+    <div class="d-flex justify-content-center my-5">
+        <div class="col-6">
+            <div class="cards ">
+                <div class="card my-2">
+                    <div class="card-header">
+                        <img src="user.png" class="rounded img-user" alt="">
+                        <b>saber my</b>
+                    </div>
+                    <div class="card-body">
+                        <img src="body-img.jpg" class="img-body rounded w-100" alt="">
+                        <h6 class="--bs-dark-text-emphasis">2min</h6>
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <hr>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-pen" viewBox="0 0 16 16">
+                            <path
+                                d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                        </svg>
+                        <a href="#"
+                            class="link-dark link-underline-opacity-0 link-opacity-50 link-opacity-100-hover">(3)comment</a>
+                        <span id="tags">
+                            <button class="btn btn-secondary"></button>
+                        </span>
+                    </div>
+                    <div class="coments">
+                        <div class="coment p-3 mt-3">
+                            <div class="header"><img src="user.png" class="img-user rounded" alt=""><b>yassin</b></div>
+                            <div class="bodycoment">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime,
+                                doloremque.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- post end -->
+</body>
+<script src="main.js"></script>
+<script>
+
+    const urlparams = new URLSearchParams(window.location.search)
+    const id = urlparams.get("postid")
+
+    function getpost() {
+        axios.get(`${urlpost}/${id}`)
+            .then((Response) => {
+                const post = Response.data.data
+                const author = post.author
+                const comments = Response.data.data.comments
+
+                let posttitle = ""
+                if (posttitle != null) {
+                    posttitle = post.title
+                }
+                document.querySelector(".card").innerHTML = ""
+                document.getElementById("username-span").innerHTML = author.username
+                let comentcontent = ""
+                for (coment of comments) {
+                    comentcontent += `
+                        <div class="coment p-3 mt-3">
+                            <div class="header"><img src="${coment.author.profile_image}" class="rounded img-user" alt="">
+                                <b>${coment.author.username}</b>
+                                </div>
+                            <div class="bodycoment">${coment.body}</div>
+                        </div>
+                    `
+                }
+                let content = `
+            <div class="card my-3">
+                 <div class="card-header">
+                    <img src="${author.profile_image}" class="rounded img-user" alt="">
+                    <b>${author.name}</b>
+                 </div>
+                <div class="card-body" onclick="onclicked(${post.id})">
+                    <img src="${post.image}" class="img-body rounded w-100" alt="">
+                    <h6 class="--bs-dark-text-emphasis">${post.created_at}</h6>
+                    <h5 class="card-title">${posttitle}</h5>
+                    <p class="card-text">${post.body}</p>
+                    <hr>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-pen" viewBox="0 0 16 16">
+                        <path
+                            d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                    </svg>
+                    <a href="#"
+                        class="link-dark link-underline-opacity-0 link-opacity-50 link-opacity-100-hover">(${post.comments_count})comment</a> 
+                        <span id="tags">
+                        <button class="btn btn-secondary">${post.tags.name}</button>
+                    </span>
+                        </div>
+                        
+            </div>
+            <div class="coments">
+                ${comentcontent}
+                </div>
+            <div class="input-group mb-3">
+                <input type="text" placeholder="add your comment" class="form-control comentinput">
+                <button class="btn btn-outline-warning newcomentbtn"  id="ssw"  type="button" >send</button>
+            </div>
+
+                `
+                document.querySelector(".cards").innerHTML = content
+            }
+            )
+    }
+    getpost()
+    // const newbtn = document.querySelector(".newcomentbtn").addEventListener("click",addnewcoment)
+    const newbtn = document.querySelector(".newcomentbtn")
+
+    console.log(newbtn)
+    function addnewcoment() {
+        let newcoment = document.querySelector(".comentinput").value
+        const token = localStorage.getItem("token")
+        let params = {
+            "body": newcoment
+        }
+        const url = `${urlpost}/${id}/comments`
+        axios.post(url, params, {
+            headers: {
+                "Authorization": `bearer ${token}`
+            }
+        }).then((response) => {
+            console.log(url)
+            console.log(response)
+            // getpost()
+        })
+    }
+
+    // newbtn.addEventListener("click", addnewcoment())
+
+
+</script>
+
+</html>
