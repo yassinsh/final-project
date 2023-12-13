@@ -206,6 +206,10 @@
                             <div class="bodycoment">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime,
                                 doloremque.</div>
                         </div>
+                        <div class="input-group mb-3">
+                            <input type="text" placeholder="add your comment" class="form-control comentinput">
+                            <button class="btn btn-outline-warning newcomentbtn" id="ssw" type="button">send</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -283,9 +287,8 @@
     }
     getpost()
     // const newbtn = document.querySelector(".newcomentbtn").addEventListener("click",addnewcoment)
-    const newbtn = document.querySelector(".newcomentbtn")
+    const newcommentbtn = document.querySelector("#ssw")
 
-    console.log(newbtn)
     function addnewcoment() {
         let newcoment = document.querySelector(".comentinput").value
         const token = localStorage.getItem("token")
@@ -293,18 +296,20 @@
             "body": newcoment
         }
         const url = `${urlpost}/${id}/comments`
+        console.log(token)
         axios.post(url, params, {
             headers: {
                 "Authorization": `bearer ${token}`
             }
-        }).then((response) => {
-            console.log(url)
-            console.log(response)
-            // getpost()
         })
+            .then((response) => {
+                console.log(newcommentbtn)
+                console.log(response)
+                // getpost()
+            })
     }
 
-    // newbtn.addEventListener("click", addnewcoment())
+    newcommentbtn.addEventListener("click", addnewcoment())
 
 
 </script>
