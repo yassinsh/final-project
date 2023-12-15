@@ -207,7 +207,8 @@
                                 doloremque.</div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" placeholder="add your comment" class="form-control comentinput">
+                            <input type="text" placeholder="add your comment" class="form-control addnewcomentinput"
+                                id="comentinput">
                             <button class="btn btn-outline-warning newcomentbtn" id="ssw" type="button">send</button>
                         </div>
                     </div>
@@ -276,7 +277,7 @@
                 ${comentcontent}
                 </div>
             <div class="input-group mb-3">
-                <input type="text" placeholder="add your comment" class="form-control comentinput">
+                <input type="text" placeholder="add your comment" class="form-control addnewcomentinput">
                 <button class="btn btn-outline-warning newcomentbtn"  id="ssw"  type="button" >send</button>
             </div>
 
@@ -287,30 +288,34 @@
     }
     getpost()
     // const newbtn = document.querySelector(".newcomentbtn").addEventListener("click",addnewcoment)
-    const newcommentbtn = document.querySelector("#ssw")
+    const addcommentbtn = document.querySelector("#ssw")
 
     function addnewcoment() {
-        let newcoment = document.querySelector(".comentinput").value
+        let addnewcomentinp = document.querySelector(".addnewcomentinput").value
         const token = localStorage.getItem("token")
         let params = {
-            "body": newcoment
+            "body": addnewcomentinp
         }
-        const url = `${urlpost}/${id}/comments`
-        console.log(token)
+        const url = `https://tarmeezacademy.com/api/v1/posts/${id}/comments`
+        console.log(addnewcomentinp, "new coment")
         axios.post(url, params, {
             headers: {
-                "Authorization": `bearer ${token}`
+                "authorization": `Bearer ${token}`
             }
+        }).then((response) => {
+            console.log(response.data)
+            getpost()
+
         })
-            .then((response) => {
-                console.log(newcommentbtn)
-                console.log(response)
-                // getpost()
+            .catch((Error) => {
+                const errormessage = Error.response.data.message
+                console.log(errormessage)
+                console.log("error")
+                console.log(url, params, token)
             })
     }
 
-    newcommentbtn.addEventListener("click", addnewcoment())
-
+    addcommentbtn.addEventListener("click", addnewcoment())
 
 </script>
 
