@@ -37,7 +37,9 @@ html,
     resize: none;
     border-radius: 10px;
     border-color: gray;
+
 }
+
 
 .navuserimg {
     width: 40px;
@@ -50,4 +52,36 @@ html,
 
 .coment {
     background-color: #eee;
+}
+
+.editpost {
+    float: right;
+}
+
+.deletepost {
+    float: right;
+    margin-left: 5px;
+}
+
+.img-userprofile {
+    width: 150px;
+    height: 150px;
+}
+
+.spanheader {
+    cursor: pointer;
+}
+
+.profilebtn {
+    cursor: pointer;
+}
+
+.profilebtn:active,
+.homebtn:active {
+    color: rgb(255, 255, 255) !important;
+}
+
+.profilebtn:hover,
+.homebtn:hover {
+    color: rgb(92, 92, 92) !important;
 }

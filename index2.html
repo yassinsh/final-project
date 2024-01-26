@@ -141,10 +141,11 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link  active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link link-secondary homebtn" aria-current="page"
+                                    href="index.html">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="#">profile</a>
+                                <a class="nav-link link-secondary profilebtn" onclick="profileclicked()">profile</a>
                             </li>
 
                         </ul>
@@ -209,7 +210,8 @@
                         <div class="input-group mb-3">
                             <input type="text" placeholder="add your comment" class="form-control addnewcomentinput"
                                 id="comentinput">
-                            <button class="btn btn-outline-warning newcomentbtn" id="ssw" type="button">send</button>
+                            <button class="btn btn-outline-warning newcomentbtn" id="ssw" onclick="addnewcoment()"
+                                type="button">send</button>
                         </div>
                     </div>
                 </div>
@@ -278,7 +280,7 @@
                 </div>
             <div class="input-group mb-3">
                 <input type="text" placeholder="add your comment" class="form-control addnewcomentinput">
-                <button class="btn btn-outline-warning newcomentbtn"  id="ssw"  type="button" >send</button>
+                <button class="btn btn-outline-warning newcomentbtn"  onclick="addnewcoment()" id="ssw"  type="button" >send</button>
             </div>
 
                 `
@@ -289,7 +291,7 @@
     getpost()
     // const newbtn = document.querySelector(".newcomentbtn").addEventListener("click",addnewcoment)
     const addcommentbtn = document.querySelector("#ssw")
-
+    // todo add new comment
     function addnewcoment() {
         let addnewcomentinp = document.querySelector(".addnewcomentinput").value
         const token = localStorage.getItem("token")
@@ -315,7 +317,7 @@
             })
     }
 
-    addcommentbtn.addEventListener("click", addnewcoment())
+    // addcommentbtn.addEventListener("click", addnewcoment())
 
 </script>
 
